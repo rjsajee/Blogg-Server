@@ -16,20 +16,6 @@ router.route("/:username").get(middleware.checkToken, (req, res)=> {
     });
 });
 
-route.route("/checkusername/:username").get((res, req) =>{
-    User.findOne({username: req.params.username}, (err, result) =>{
-        if(err) res.status(500).json({msg: err});
-        if(result!==null){
-            return res.json({
-                Status: true,
-            });
-        }
-        else return res.json({
-            Status: false,
-        })
-    });
-});
-
 router.route("/login").post((req, res)=> {
     User.findOne({username: req.body.username}, (err, result) =>{
         if(err) return res.status(500).json({msg: err});
