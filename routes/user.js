@@ -2,16 +2,31 @@ const express = require("express");
 const User = require("../models/user.model");
 const config= require("../config");
 const jwt = require("jsonwebtoken");
-
+const { request } = require("express");
+const middleware = require("../middleware");
 const router = express.Router();
 
-router.route("/:username").get((req, res)=> {
+router.route("/:username").get(middleware.checkToken, (req, res)=> {
     User.findOne({username: req.params.username}, (err, result) =>{
         if(err) res.status(500).json({msg: err});
         res.json({
             data: result,
             username:req.params.username,
         });
+    });
+});
+
+route.route("/checkusername/:username").get((res, req) =>{
+    User.findOne({username: req.params.username}, (err, result) =>{
+        if(err) res.status(500).json({msg: err});
+        if(result!==null){
+            return res.json({
+                status: true,
+            });
+        }
+        else return res.json({
+            status: false,
+        })
     });
 });
 
