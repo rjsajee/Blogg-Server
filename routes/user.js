@@ -21,11 +21,11 @@ route.route("/checkusername/:username").get((res, req) =>{
         if(err) res.status(500).json({msg: err});
         if(result!==null){
             return res.json({
-                status: true,
+                Status: true,
             });
         }
         else return res.json({
-            status: false,
+            Status: false,
         })
     });
 });
