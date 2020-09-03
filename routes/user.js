@@ -8,24 +8,25 @@ const router = express.Router();
 
 router.route("/:username").get(middleware.checkToken, (req, res)=> {
     User.findOne({username: req.params.username}, (err, result) =>{
-        if(err) res.status(500).json({msg: err});
-        res.json({
+        if(err) return res.status(500).json({msg: err});
+        return res.json({
             data: result,
-            username:req.params.username,
+            username: req.params.username,
         });
     });
 });
 
-router.route("/checkusername/:username").get((res, req) =>{
+router.route("/checkusername/:username").get((req, res) =>{
     User.findOne({username: req.params.username}, (err, result) =>{
         if(err) return res.status(500).json({msg: err});
         if(result!==null){
             return res.json({
                 Status: true,
             });
-        } 
-        else return res.json({
-            Status: false,
+        }
+        else 
+        return res.json({
+            Status:false,
         });
     });
 });
