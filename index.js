@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 const app = express();
 
-mongoose.connect('mongodb+srv://sajeevan96:20.03.1996@cluster0.rbzzm.gcp.mongodb.net/AppDB?retryWrites=true&w=majority/AppDB', 
-{useNewUrlParser: true,
-useCreateIndex:true,
-useUnifiedTopology:true,
-});
+// mongoose.connect('mongodb+srv://sajeevan96:20.03.1996@cluster0.rbzzm.gcp.mongodb.net/AppDB?retryWrites=true&w=majority/AppDB', 
+// {useNewUrlParser: true,
+// useCreateIndex:true,
+// useUnifiedTopology:true,
+// });
 
 const connection = mongoose.connection;
 connection.once("open", () => {
